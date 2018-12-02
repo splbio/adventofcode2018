@@ -1,19 +1,15 @@
 #!/bin/env python3
 
 import sys
+import itertools
 
-in_data = sys.stdin.readlines()
 freq = 0
 seen_freq = {}
-while True:
-    for x in in_data:
-        freq += int(x)
-        """
-        print("{} {}".format(x, freq))
-        import time
-        time.sleep(0.1)
-        """
-        if freq in seen_freq:
-            print(freq)
-            sys.exit(0)
-        seen_freq[freq] = True
+for x in itertools.cycle(sys.stdin.readlines()):
+    freq += int(x)
+    if freq in seen_freq:
+        break
+        #print(freq)
+        #sys.exit(0)
+    seen_freq[freq] = True
+print(freq)
